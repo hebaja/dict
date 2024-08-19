@@ -1,5 +1,6 @@
-#include "dict.h"
 #include <stdlib.h>
+#include "dict.h"
+#include "utils/ft.h"
 
 int	get_table_height(char *str)
 {

@@ -1,10 +1,6 @@
 #ifndef DICT_H
 # define DICT_H
 
-void	ft_putchar(char c);
-void	ft_putnbr(int nb);
-int	ft_strlen(char *str);
-void	ft_putstr(char *str);
 void	read_file(int fd, char *buf, int file_size);
 void    print_matrix(char **matrix);
 char 	**create_matrix(int fd, char *buf);

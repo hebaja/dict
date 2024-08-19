@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "dict.h"
+#include "utils/ft.h"
 
 static const char	*FILE_PATH = "src/numbers.dict";
 
