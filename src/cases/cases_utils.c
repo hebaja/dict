@@ -1,3 +1,4 @@
+#include "../dict.h"
 #include "cases.h"
 #include "../utils/ft.h"
 
@@ -56,48 +57,63 @@ int	is_end(int x, int y, int height, char **table)
 	return (valid);
 }
 
-void	write_number(int height, char **table, char **matrix)
+void	write_number(struct s_table s_tab, char **matrix)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	while (x < height)
+	while (x < s_tab.height)
 	{
 		y = 0;
 		while (y < 3)
 		{
-			if ((y == 0 && x == 0 && table[x][y] == '0') || \
-			(y == 1 && x == 0 && table[x][y] == '0' && \
-			table[x][y - 1] == '0')) // It makes index iterate case first names are zeroes
+			if ((y == 0 && x == 0 && s_tab.table[x][y] == '0') || \
+			(y == 1 && x == 0 && s_tab.table[x][y] == '0' && \
+			s_tab.table[x][y - 1] == '0')) // It makes index iterate case first names are zeroes
 				y++;
-			else if ((height - x) == 13 && y == 2 && table[x][y] != '0')
+			else if ((s_tab.height - x) == 13 && y == 2 && s_tab.table[x][y] != '0')
 			{
-				parse_unit(table[x][y], matrix);
+				parse_unit(s_tab.table[x][y], matrix);
 				ft_putchar(' ');
 				extract_word(matrix[40]);
-				if (!is_end(x, y, height, table))
+				if (!is_end(x, y, s_tab.height, s_tab.table))
 					ft_putchar(' ');
 				y++;
 			}
-			else if ((height - x) == 12)
+			else if ((s_tab.height - x) == 12)
 			{
-				case_decillion(x, y, table, matrix);
+				case_decillion(x, y, s_tab.table, matrix);
 				y++;
 			}
-			else if ((height - x) == 11)
+			else if ((s_tab.height - x) == 11)
 			{
-				case_nonillion(x, y, table, matrix);
+				case_nonillion(x, y, s_tab.table, matrix);
 				y++;
 			}
-			else if ((height - x) == 10)
+			else if ((s_tab.height - x) == 10)
 			{
-				case_octillion(x, y, table, matrix);
+				case_octillion(x, y, s_tab.table, matrix);
 				y++;
 			}
-			else if ((height - x) == 9)
+			else if ((s_tab.height - x) == 9)
 			{
-				case_septillion(x, y, table, matrix);
+				case_septillion(x, y, s_tab.table, matrix);
+				y++;
+			}
+			else if ((s_tab.height - x) == 8)
+			{
+				case_sextillion(x, y, s_tab.table, matrix);
+				y++;
+			}
+			else if ((s_tab.height - x) == 7)
+			{
+				case_quintillion(x, y, s_tab.table, matrix);
+				y++;
+			}
+			else if ((s_tab.height - x) == 6)
+			{
+				case_quadrillion(x, y, s_tab.table, matrix);
 				y++;
 			}
 			else

@@ -4,6 +4,14 @@
 #include "cases/cases.h"
 #include "utils/ft.h"
 
+// struct s_table
+// {
+// 	char	**table;
+// 	int	size;
+// };
+
+// typedef struct s_table s_table;
+
 int	main(int argc, char **argv)
 {
 	int	fd_matrix;
@@ -12,6 +20,7 @@ int	main(int argc, char **argv)
 	char	**matrix;
 	char	**table;
 	int	i;
+	s_table	s_tab;
 
 	//read_file(fd_read, buf_read, file_size);
 	matrix = create_matrix(fd_matrix, buf_matrix);
@@ -20,7 +29,9 @@ int	main(int argc, char **argv)
 	{
 		table = build_table(argv[1]);
 		populate_table(argv[1], table);
-		write_number(get_table_height(argv[1]), table, matrix);
+		s_tab.table = table;
+		s_tab.height = get_table_height(argv[1]);
+		write_number(s_tab, matrix);
 	}
 	i = 0;
 	free(matrix);
