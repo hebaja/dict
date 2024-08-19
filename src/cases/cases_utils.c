@@ -57,68 +57,97 @@ int	is_end(int x, int y, int height, char **table)
 	return (valid);
 }
 
+int  is_all_zero(int height, char **table)
+{
+  int  x;
+  int  y;
+
+  x = 0;
+	while (x < height)
+	{
+		y = 0;
+		while (y < 3)
+		{
+			if (table[x][y] != '0')
+				return (0);
+			y++;
+		}
+		x++;
+	}
+  return (1);
+}
+
 void	write_number(struct s_table s_tab, char **matrix)
 {
 	int	x;
 	int	y;
 
-	x = 0;
-	while (x < s_tab.height)
-	{
-		y = 0;
-		while (y < 3)
-		{
-			if ((y == 0 && x == 0 && s_tab.table[x][y] == '0') || \
-			(y == 1 && x == 0 && s_tab.table[x][y] == '0' && \
-			s_tab.table[x][y - 1] == '0')) // It makes index iterate case first names are zeroes
-				y++;
-			else if ((s_tab.height - x) == 13 && y == 2 && s_tab.table[x][y] != '0')
-			{
-				parse_unit(s_tab.table[x][y], matrix);
-				ft_putchar(' ');
-				extract_word(matrix[40]);
-				if (!is_end(x, y, s_tab.height, s_tab.table))
-					ft_putchar(' ');
-				y++;
-			}
-			else if ((s_tab.height - x) == 12)
-			{
-				case_decillion(x, y, s_tab.table, matrix);
-				y++;
-			}
-			else if ((s_tab.height - x) == 11)
-			{
-				case_nonillion(x, y, s_tab.table, matrix);
-				y++;
-			}
-			else if ((s_tab.height - x) == 10)
-			{
-				case_octillion(x, y, s_tab.table, matrix);
-				y++;
-			}
-			else if ((s_tab.height - x) == 9)
-			{
-				case_septillion(x, y, s_tab.table, matrix);
-				y++;
-			}
-			else if ((s_tab.height - x) == 8)
-			{
-				case_sextillion(x, y, s_tab.table, matrix);
-				y++;
-			}
-			else if ((s_tab.height - x) == 7)
-			{
-				case_quintillion(x, y, s_tab.table, matrix);
-				y++;
-			}
-			else if ((s_tab.height - x) == 6)
-			{
-				case_quadrillion(x, y, s_tab.table, matrix);
-				y++;
-			}
-			else
-				y++;
-		}
-		x++;
-	}
+  if (is_all_zero(s_tab.height, s_tab.table))
+    extract_word(matrix[0]);
+  else
+  {
+  	x = 0;
+  	while (x < s_tab.height)
+  	{
+  		y = 0;
+  		while (y < 3)
+		  {
+        if ((s_tab.height - x) == 13)
+        {
+          case_undecillion(x, y, s_tab, matrix);
+          y++;
+        } else if ((s_tab.height - x) == 12)
+  			{
+  				case_decillion(x, y, s_tab, matrix);
+  				y++;
+  			} else if ((s_tab.height - x) == 11)
+  			{
+  				case_nonillion(x, y, s_tab, matrix);
+  				y++;
+  			} else if ((s_tab.height - x) == 10)
+  			{
+  				case_octillion(x, y, s_tab, matrix);
+  				y++;
+  			} else if ((s_tab.height - x) == 9)
+  			{
+  				case_septillion(x, y, s_tab, matrix);
+  				y++;
+  			} else if ((s_tab.height - x) == 8)
+  			{
+  				case_sextillion(x, y, s_tab, matrix);
+  				y++;
+  			} else if ((s_tab.height - x) == 7)
+  			{
+  				case_quintillion(x, y, s_tab, matrix);
+  				y++;
+  			} else if ((s_tab.height - x) == 6)
+  			{
+  				case_quadrillion(x, y, s_tab, matrix);
+  				y++;
+  			} else if ((s_tab.height - x) == 5)
+  			{
+  				case_trillion(x, y, s_tab, matrix);
+  				y++;
+  			} else if ((s_tab.height - x) == 4)
+  			{
+			  	case_billion(x, y, s_tab, matrix);
+		  		y++;
+	  		} else if ((s_tab.height - x) == 3)
+  			{
+			  	case_million(x, y, s_tab, matrix);
+		  		y++;
+	  		} else if ((s_tab.height - x) == 2)
+  			{
+  				case_thousand(x, y, s_tab, matrix);
+  				y++;
+  			} else if ((s_tab.height - x) == 1)
+  			{
+  				case_hundred(x, y, s_tab, matrix);
+  				y++;
+  			} else
+  				y++;
+  		}
+  		x++;
+  	}
+  }
 }

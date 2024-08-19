@@ -1,7 +1,7 @@
 #include "cases.h"
 #include "../utils/ft.h"
 
-void	case_nonillion(int x, int y, s_table s_tab, char **matrix)
+void	case_hundred(int x, int y, s_table s_tab, char **matrix)
 {
 	if (y == 0 && s_tab.table[x][y] != '0')
 	{
@@ -31,14 +31,6 @@ void	case_nonillion(int x, int y, s_table s_tab, char **matrix)
 		if (s_tab.table[x][y - 1] != '1')
 		{
 			parse_unit(s_tab.table[x][y], matrix);
-			ft_putchar(' ');
 		}
 	}
-	if (y == 2 && (s_tab.table[x][y] != '0' || s_tab.table[x][y - 1] != '0' || s_tab.table[x][y - 2] != '0'))
-	{
-		extract_word(matrix[38]);
-		if (!is_end(x, y, s_tab.height, s_tab.table))
-			ft_putchar(' ');
-	}
 }
-
