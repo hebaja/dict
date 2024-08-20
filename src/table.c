@@ -86,7 +86,7 @@ void	populate_table(char *str, char **table)
 		}
 		x--;
 	}
-	ft_putchar(10);
-	print_table(get_table_height(str), table);
+	// ft_putchar(10);
+	// print_table(get_table_height(str), table);
 }
 
